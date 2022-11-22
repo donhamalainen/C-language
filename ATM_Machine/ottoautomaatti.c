@@ -248,13 +248,15 @@ int withdraw(int tili){
             printf("\nOle hyvä ja syötä nostettava summa uudelleen > ");
             scanf("%d", &nosto);
         } while(nosto > nostoRaja);
-    // Tarkistaa noston ja pienimmän nosto mahdollisuuden eroa
-    } else if (nosto < nostoPienin){
-        do{
-            printf("\nPienin mahdollinen nosto on 20€\n");
-            printf("\nOle hyvä ja syötä nostettava summa uudelleen > ");
+
+    // Tarkistaa noston ja pienimmän nosto mahdollisuuden eroa, sekä että nostossa ei tehdä muutakuin tasasumma nostoja.
+    }
+    if ((nosto < 40 && nosto != 20) || (nosto % 10) != 0){
+         do{
+            printf("\nPienimmät mahdolliset nostot ovat 20€ ja 40€. Pyydämme myös kymmenellä jaollisia summia eli tasasummia\n");
+            printf("\nOle hyvä ja anna tasa summainen nosto uudelleen > ");
             scanf("%d", &nosto);
-        } while (nosto < nostoPienin);
+        } while ((nosto < 40 && nosto != 20) || (nosto % 10) != 0);
     }
     
     tili -= nosto;
