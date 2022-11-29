@@ -1,0 +1,198 @@
+käyttää;använda/bruka
+olla jotakin mieltä;tycka något anse tänka
+yksikkötesti;enhetstest
+vaihe;fas
+kuvata;skildra/beskriva
+riippua jostakin;bero på något
+toimitus;leverens
+alue;område
+hylätä;förkasta
+mahdollistaa;möjliggöra
+rajoite;begränsning
+verkko;nät
+tarkoitus;syfte
+läheisyydessä;i närheten
+olla pääsy johonkin;
+begrepp;yhteisnimitys
+betyda;tarkoittaa, merkitä
+dvs;toisin sanoen
+gruppera;ryhmitellä
+skicka;lähettää
+anpassa;sovittaa
+användare;käyttäjä
+användargränssnitt;käyttöliittymä
+avsedd för något;tarkoitettu johonkin
+behöva;tarvita
+beroende på något;riippuen jostakin
+beskriva;kuvailla
+bilda;muodostaa
+bunden till något;sidottu johonkin
+bytekod;tavukoodi
+dela;jakaa
+distribuera;jakaa
+drivrutin;laiteajuri
+däremot;sitävastoin
+effektivitet;tehokkuus
+exekvera;suorittaa
+färdigskriven;valmiiksikirjoitettu
+förstå;ymmärtää
+helhet;kokonaisuus
+högnivåspråk;korkean tason kieli
+i allmänhet;yleensä
+inbyggd;sisäänrakennettu, upotettu
+instruktion;ohje, käsky
+kompilera;kääntää
+konstruera;rakentaa, suunnitella
+kräva;vaatia
+källkod;lähdekoodi
+köra;ajaa
+likna;muistuttaa
+länka ihop;linkittää yhteen
+medan;sillä aikaa kun
+meningsfylld;mielekäs
+människovänlig;ihmisystävällinen
+någorlunda;jotensakin
+omfattande;laaja
+omgivning;ympäristö
+operativsystemkärna;käyttöjärjestelmän ydin 
+ordbehandlare;tekstinkäsittelyohjelma
+plattform;alusta
+portabilitet;siirrettävyys
+programleverantör;ohjelmantoimittaja
+programmeringsverktyg;ohjelmointityökalu
+proprietär;omistusoikeudella suojattu
+samling;kokoelma
+samt;sekä
+serie;sarja
+skadlig;haitallinen
+skillnad;ero
+skilt;erikseen
+skrip;komentojono, skripti
+slippa något;päästä jstk
+spionprogram;vakoiluohjelma
+sprida;levittää
+språk;kieli
+strax innan;juuri ennen
+styra;ohjata
+stöda;tukea
+sålunda;siten
+såsom;kuten
+tillgänglig;saavutettavissa
+tillverka;valmistaa
+tillämpningsprogram;sovellusohjelma
+tjänst;palvelu
+tolka;tulkita
+uppfylla;täyttää
+uppgift;tehtävä, tieto
+ursprungligen;alunperin
+utföra;suorittaa
+verktyg;työkalu
+vinning;voitto
+övrig;muu
+ansikte;kasvot
+ansvar;vastuu
+betyda;merkitä, tarkoittaa
+betydlig;merkittävä
+bygga;rakentaa
+eventuell;mahdollinen
+fortast;nopeiten
+framsteg;edistys(askel)
+fungerande;toimiva
+färre;harvempi
+förmedla;välittää jostakin
+förmodligen;oletettavasti, luultavasti
+förtroende;luottamus
+förtydliga;selventää
+förändring;muutos
+grundvärdering;perusarvo
+gå igenom;käydä läpi
+i det långa loppet;pitkässä juoksussa
+innan;ennen
+innebära;sisältää
+konkurrensfördel;kilpailuetu
+kontinuerlig;jatkuva
+kravförändringsprocess;vaatimustenmuutosprosessi
+leverera;toimittaa
+lita på något;luottaa jhk
+mått;mitta, mittari
+mätbar;mitattava
+programvara;ohjelmisto
+punkt;piste, pointti
+representant;edustaja
+samt;sekä
+sinka;viivästyttää
+skapa;luoda
+snarare;pikemminkin
+stöd;tuki
+stödja;tukea
+tillfredsställa;tyydyttää
+tillsammans;yhdessä
+tilläggskommentar;lisäkommentti
+tolka;tulkita
+utnyttja ngt;hyödyntää jtk
+utveckla;kehittää
+utvärdera;arvioida
+värde;arvo
+värdefull;arvokas
+åsikt;mielipide
+åtgärda;korjata
+ändra på ngt;muuttaa jtk
+anpassningsförmåga;sopeutumiskyky
+användare;käyttäjä
+arbetssätt;työtapa
+beteende;käytös
+däremot;sitävastoin
+enkelhet;yksinkertaisuus
+enligt konstens alla regler;kaikkien taiteen sääntöjenmukaan
+falla i fällan;langeta ansaan
+framtiden;tulevaisuus
+från början;alusta alkaen
+följa;seurata, noudattaa
+förbättring;parannus
+förr eller senare;ennenmmin tai myöhemmin
+föränderlig;muuttuva
+grundläggande;perustavaa laatua oleva
+hoppa över ngt;hypätä jnk yli
+hålla till ett minimum;pitää minimissä
+i sig självt;itsessään
+innebära;sisältää
+innehålla;sisältää
+inom ramen för ngt;jnk puitteissa
+irritationsmoment;häiriötekijä
+justera;justeerata, hienosäätää
+jämn;tasainen
+klara av ngt;selviytyä jstk
+krav;vaatimus
+kvarstå;jäädä jäljelle
+lättrörlig;ketterä
+med jämna mellanrum;tasaisin väliajoin
+mål;maali,tavoite
+mängden arbete;työnmäärä
+möjlighet;mahdollisuus
+obegränsad;rajaamaton
+onödig;tarpeeton
+peka mot ngt;osoittaa jhk
+plötslig;äkillinen
+repeterad;toistuva
+rätt;oikein
+silvertejp;ilmastointiteippi
+ske;tapahtua
+skede;vaihe
+skuld;velka
+slippa göra ngt;päästä tekemästä jtk
+slå tillbaka;iskeä takaisin
+ständig;jatkuva, tasainen
+stärka;vahvistaa
+ta på sig;ottaa vastuulleen, kontolleen
+tankesätt;ajattelutapa
+undvika;välttää
+uppgift;tehtävä, tieto
+uppmärksamhet;huomio
+uthållighet;kestävyys
+utkomst;tulos
+utvecklare;kehittäjä
+utvecklingstakt;kehitystahti
+utvärdera ngt;arvioida jtk
+värde;arvo
+växa fram;kasvaa esiin
+övertid;ylityöaika
