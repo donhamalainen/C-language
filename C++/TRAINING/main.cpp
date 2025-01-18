@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <random>
+
 using namespace std;
 
 int reverseNumber(int number)
@@ -56,8 +59,49 @@ vector<int> find_lowest_and_highest_number(vector<int> &list)
     return {lowest, highest};
 };
 
+string password_gen()
+{
+    srand(time(0));
+    signed int characterCount = rand() % 15 + 6;
+    cout << characterCount << endl;
+    string password = "";
+
+    // Lisätään vähintään yksi pieni kirjain, iso kirjain ja numero
+    password += 'a' + rand() % 26;
+    password += 'A' + rand() % 26;
+    password += '0' + rand() % 10;
+
+    for (signed int i = 3; i < characterCount; i++)
+    {
+        signed int randomMethod = rand() % 3;
+        switch (randomMethod)
+        {
+        case 0:
+        {
+            char lowercase = 'a' + rand() % 26;
+            password += lowercase;
+            break;
+        }
+        case 1:
+        {
+            char uppercase = 'A' + rand() % 26;
+            password += uppercase;
+            break;
+        }
+        case 2:
+        {
+            char numbercase = '0' + rand() % 10;
+            password += numbercase;
+            break;
+        }
+        }
+    }
+    return password;
+}
 int main()
 {
+    string password = password_gen();
+    cout << password << endl;
     cout << flush;
     return 0;
 }
