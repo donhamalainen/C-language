@@ -1,6 +1,12 @@
+/**
+ * This main.cpp file contains various small functions that I implemented while practicing the C++ language.
+ * 2025, Created by Don Hämäläinen
+ */
+
 #include <iostream>
-#include <string>
 #include <random>
+#include <vector>
+#include <string>
 
 using namespace std;
 
@@ -58,7 +64,6 @@ vector<int> find_lowest_and_highest_number(vector<int> &list)
     cout << lowest << " " << highest << endl;
     return {lowest, highest};
 };
-
 string password_gen()
 {
     srand(time(0));
@@ -98,10 +103,166 @@ string password_gen()
     }
     return password;
 }
+
+/*
+Clock shows h hours, m minutes and s seconds after midnight.
+Your task is to write a function which returns the time since midnight in milliseconds.
+
+h = x * 60^2 * 1000
+m = x * 60 * 1000
+s = x * 1000
+*/
+int past(int h, int m, int s)
+{
+    // First we check the input is correct
+    if (!(h <= 23 && h >= 0) || !(m <= 59 && m >= 0) || !(s <= 59 && s >= 0))
+    {
+        cout << "Wrong format" << endl;
+        return 0;
+    };
+    return (h * 60 * 60 * 1000) + (m * 60 * 1000) + (s * 1000);
+}
+
+/*
+There was a test in your class and you passed it. Congratulations!
+But you're an ambitious person. You want to know if you're better than the average student in your class.
+You receive an array with your peers' test scores. Now calculate the average and compare your score!
+Return true if you're better, else false!
+
+Note: Your points are not included in the array of your class's points. Do not forget them when calculating the average score!
+*/
+bool betterThanAverage(std::vector<int> classPoints, int yourPoints)
+{
+    int totalpoint = 0;
+    int average = 0;
+    for (int num : classPoints)
+    {
+        totalpoint += num;
+    };
+    average = totalpoint / classPoints.size();
+    if (yourPoints > average)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/*
+Given an array of integers.
+Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers. 0 is neither positive nor negative.
+If the input is an empty array or is null, return an empty array.
+
+Example
+For input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15], you should return [10, -65].
+
+
+ */
+std::vector<int> countPositivesSumNegatives(std::vector<int> input)
+{
+    int countPositive = 0;
+    int sumNegative = 0;
+    if (input.size() == 0)
+    {
+        return {};
+    }
+    for (int num : input)
+    {
+        if (num > 0)
+        {
+            countPositive++;
+        }
+        if (num < 0)
+        {
+            sumNegative += num;
+        }
+    }
+    return {countPositive, sumNegative};
+}
+
+/*
+In this kata you have to correctly return who is the "survivor", ie: the last element of a Josephus permutation.
+Basically you have to assume that n people are put into a circle and that they are eliminated in steps of k elements, like this:
+
+n=7, k=3 => means 7 people in a circle
+one every 3 is eliminated until one remains
+[1,2,3,4,5,6,7] - initial sequence
+[1,2,4,5,6,7] => 3 is counted out
+[1,2,4,5,7] => 6 is counted out
+[1,4,5,7] => 2 is counted out
+[1,4,5] => 7 is counted out
+[1,4] => 5 is counted out
+[4] => 1 counted out, 4 is the last element - the survivor!
+The above link about the "base" kata description will give you a more thorough insight about the origin of this kind of permutation, but basically that's all that there is to know to solve this kata.
+
+Notes and tips: using the solution to the other kata to check your function may be helpful, but as much larger numbers will be used, using an array/list to compute the number of the survivor may be too slow; you may assume that both n and k will always be >=1.
+ */
+
+int josephusSurvivor(int n, int k)
+{
+    vector<int> list;
+    list.reserve(n);
+    for (int i = 1; i <= n; i++)
+    {
+        list.push_back(i);
+    }
+
+    int currentIndex = 0;
+    while (list.size() > 1)
+    {
+        currentIndex = ((currentIndex + k) - 1) % list.size();
+        list.erase(list.begin() + currentIndex);
+    }
+    return list[0];
+}
+
+/*
+How can you tell an extrovert from an introvert at NSA?
+Va gur ryringbef, gur rkgebireg ybbxf ng gur BGURE thl'f fubrf.
+
+I found this joke on USENET, but the punchline is scrambled. Maybe you can decipher it?
+According to Wikipedia, ROT13 is frequently used to obfuscate jokes on USENET.
+
+For this task you're only supposed to substitute characters. Not spaces, punctuation, numbers, etc.
+
+Test examples:
+
+"EBG13 rknzcyr." -> "ROT13 example."
+
+"This is my first ROT13 excercise!" -> "Guvf vf zl svefg EBG13 rkprepvfr!"
+*/
+
+std::string rot13(const std::string &str)
+{
+    std::string result = "";
+    // upperCase = A = 65 and Z = 90
+    // lowerCase = a = 97 and z = 122
+    // new_char=(current_char − ′A′+ 13) % 26 + ′A′
+    //  INPUT:  ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+    //  OUTPUT: NOPQRSTUVWXYZABCDEFGHIJKLM nopqrstuvwxyzabcdefghijklm
+    for (char letter : str)
+    {
+        if (letter >= 'A' && letter <= 'Z')
+        {
+            result += (letter - 'A' + 13) % 26 + 'A';
+        }
+        else if (letter >= 'a' && letter <= 'z')
+        {
+            result += (letter - 'a' + 13) % 26 + 'a';
+        }
+        else
+        {
+            result += letter;
+        }
+    };
+
+    return result;
+}
 int main()
 {
-    string password = password_gen();
-    cout << password << endl;
-    cout << flush;
+    string result = rot13("EBG13 rknzcyr");
+    cout << result << endl;
     return 0;
 }
