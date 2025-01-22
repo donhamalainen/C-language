@@ -260,9 +260,150 @@ std::string rot13(const std::string &str)
 
     return result;
 }
+
+bool checkNumber(int x)
+{
+    return (x > 1);
+}
+
+/*
+Consider a Bayesian network for avalanche risk analysis where
+the occurence of avalanche (A, +a: yes, -a: no) depends on the steepness of the
+mountain area (S, +s: steep, -s: gently) and the snow conditions (C, +c: unstable, -c: stable). Furthermore, snow conditions depends on the recent weather (W,
++w: unfavourable, -w: favourable), where unfavourable weather increases the unstability of snow conditions. The marginal and conditional probability tables are
+given below.
+
+(a) Construct a Bayesian network for a given problem.
+(b) Calculate P(A | +s), i.e., the probability distribution of avalanche occurence
+when skiing on a steep mountain area. Use variable elimination to perform the
+inference (i.e., performing join and eliminate/marginalize operations by turns).
+
+S = Steepness of the mountain area (S, +s: steep, -s: gently)
+A = Avalance condition (A, +a: yes, -a: no)
+C = Snow conditions (C, +c: unstable, -c: stable)
+W = Recent weather (W, +w: unfavourable, -w: favourable)
+
+S P(S) | W P(W)
+-------|--------
++s 0.1 | +w 0.6
+-s 0.9 | -w 0.4
+----------------
+S C A    | P(A | S,C)
+---------|------------
++s +c +a | 0.90
++s +c -a | 0.10
++s -c +a | 0.30
++s -c -a | 0.70
+-s +c +a | 0.20
+-s +c -a | 0.80
+-s -c +a | 0.02
+-s -c -a | 0.98
+----------------------
+W C   | P(C | W)
+------|----------
++w +c | 0.8
++w -c | 0.2
+-w +c | 0.3
+-w -c | 0.7
+-----------------
+ */
+enum Weather
+{
+    W_FAVOURABLE,
+    W_UNFAVOURABLE
+}; // -w +w
+enum Steepness
+{
+    S_GENTLE,
+    S_STEEP
+}; // -s +s
+enum SnowCond
+{
+    C_STABLE,
+    C_UNSTABLE
+}; // -c +c
+enum Avalanche
+{
+    A_NO,
+    A_YES
+}; // -a +a
+
+// CPT
+struct BayesianNetwork
+{
+    // P(W)
+    double P_W[2];
+
+    // P(S)
+    double P_S[2];
+
+    // P(C | W) -> 2 x 2 table
+    // C can be [C_STABLE, C_UNSTABLE] and W [W_FAVOURABLE, W_UNFAVOURABLE]
+    double P_C_given_W[2][2];
+
+    // P(A | S, C) -> 2 x 2 x 2 table
+    // A can be [A_NO, A_YES]
+    // S can be [S_GENTLE, S_STEEP]
+    // C can be [C_STABLE, C_UNSTABLE]
+    double P_A_given_S_C[2][2][2];
+};
+//
+double calculate(BayesianNetwork BN)
+{
+    // P(C+) = P(C+ | W+) * P(W+) + P(C+ | -W) * P(W-)
+    double P_C_plus = BN.P_C_given_W[C_UNSTABLE][W_UNFAVOURABLE] * BN.P_W[W_UNFAVOURABLE] + BN.P_C_given_W[C_UNSTABLE][W_FAVOURABLE] * BN.P_W[W_FAVOURABLE];
+    double P_C_minus = 1 - P_C_plus;
+
+    // P(A+ | S+) = P(A+ | S+, C+) * P(S+, C+) + P(A+ | S-, C+) * P(S-, C+)
+    double P_A_Plus_with_S = BN.P_A_given_S_C[A_YES][S_STEEP][C_UNSTABLE] * P_C_plus + BN.P_A_given_S_C[A_YES][S_STEEP][C_STABLE] * P_C_minus;
+    double P_A_Minus_with_S = 1 - P_A_Plus_with_S;
+
+    // P(C+ ∣ W+) = 0.8, P(C- ∣ W+) = 0.2
+
+    // Tulosta debuggausta varten
+    cout << "P(A+ | S=+s) = " << P_A_Plus_with_S << endl;
+    cout << "P(A- | S=+s) = " << P_A_Minus_with_S << endl;
+    return 0;
+};
+void Bayesian_network_for_avalanche()
+{
+    BayesianNetwork BN;
+
+    // P(W = +w) = 0.4, P(W = -w) = 0.6 tms.
+    BN.P_W[W_FAVOURABLE] = 0.6;   // P(W = -w)
+    BN.P_W[W_UNFAVOURABLE] = 0.4; // P(W = +w)
+
+    // P(S = +s) = 0.1, P(S = -s) = 0.9
+    BN.P_S[S_GENTLE] = 0.9; // P(S = -s)
+    BN.P_S[S_STEEP] = 0.1;  // P(S = +s)
+
+    // P(C | W)
+    BN.P_C_given_W[W_FAVOURABLE][C_STABLE] = 0.8;     // +w +c | 0.8
+    BN.P_C_given_W[W_FAVOURABLE][C_UNSTABLE] = 0.2;   // +w -c | 0.2
+    BN.P_C_given_W[W_UNFAVOURABLE][C_STABLE] = 0.3;   // -w +c | 0.3
+    BN.P_C_given_W[W_UNFAVOURABLE][C_UNSTABLE] = 0.7; // -w -c | 0.7
+
+    // P(A | S, C)
+    BN.P_A_given_S_C[S_STEEP][C_UNSTABLE][A_YES] = 0.9;  // +s +c +a | 0.90
+    BN.P_A_given_S_C[S_STEEP][C_UNSTABLE][A_NO] = 0.1;   // +s +c -a | 0.10
+    BN.P_A_given_S_C[S_STEEP][C_STABLE][A_YES] = 0.3;    // +s -c +a | 0.30
+    BN.P_A_given_S_C[S_STEEP][C_STABLE][A_NO] = 0.7;     // +s -c -a | 0.70
+    BN.P_A_given_S_C[S_GENTLE][C_UNSTABLE][A_YES] = 0.2; // -s +c +a | 0.20
+    BN.P_A_given_S_C[S_GENTLE][C_UNSTABLE][A_NO] = 0.8;  // -s +c -a | 0.80
+    BN.P_A_given_S_C[S_GENTLE][C_STABLE][A_YES] = 0.02;  // -s -c +a | 0.02
+    BN.P_A_given_S_C[S_GENTLE][C_STABLE][A_NO] = 0.98;   // -s -c -a | 0.98
+
+    calculate(BN);
+}
 int main()
 {
-    string result = rot13("EBG13 rknzcyr");
-    cout << result << endl;
+    int num1 = 42;
+    int num2 = -7;
+    int num3 = 0;
+
+    std::cout << "Is " << num1 << " positive? " << (checkNumber(num1) ? "Yes" : "No") << std::endl;
+    std::cout << "Is " << num2 << " positive? " << (checkNumber(num2) ? "Yes" : "No") << std::endl;
+    std::cout << "Is " << num3 << " positive? " << (checkNumber(num3) ? "Yes" : "No") << std::endl;
+
     return 0;
 }
